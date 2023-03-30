@@ -13,8 +13,7 @@ const SiderNav = () => {
   return (
     <div>
       <Nav
-        style={{ height: "800px" }}
-        bodyStyle={{ height: 320 }}
+        style={{ height: "80vh" }}
         items={[
           {
             itemKey: "user",

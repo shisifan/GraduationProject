@@ -25,6 +25,8 @@ const Head = () => {
   return (
     <div className="header-content">
       <div className="header-content-left">
+        <img src="https://app.pers.ncku.edu.tw/ncov_web/images/covid-19-web-logo.png" />
+        <div className="header-content-left-slogan">fight against the epidemic</div>
       </div>
       <div className="header-content-middle">{StystemTitle}</div>
       <div className="header-content-right">
