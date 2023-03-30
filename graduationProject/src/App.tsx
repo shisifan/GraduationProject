@@ -1,13 +1,19 @@
 import React from "react";
-import { Button, Layout } from "@douyinfe/semi-ui";
+import { Layout } from "@douyinfe/semi-ui";
+import Head from "./component/Header";
+import SiderNav from "./component/SiderNav";
 
 const App = () => {
   const { Header, Footer, Sider, Content } = Layout;
   return (
     <Layout className="components-layout-demo">
-      <Header>Header</Header>
+      <Header>
+        <Head />
+      </Header>
       <Layout>
-        <Sider>Sider</Sider>
+        <Sider>
+          <SiderNav />
+        </Sider>
         <Content>Content</Content>
       </Layout>
       <Footer>Footer</Footer>

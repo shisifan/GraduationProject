@@ -1,0 +1,1 @@
+export const StystemTitle = '疫情防控管理系统';
