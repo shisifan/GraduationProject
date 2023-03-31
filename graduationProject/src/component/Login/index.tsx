@@ -1,6 +1,7 @@
 import { IconUserCircle, IconKey } from "@douyinfe/semi-icons";
 import { Button, Form } from "@douyinfe/semi-ui";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./index.scss";
 
 const Login = () => {
@@ -27,8 +28,12 @@ const Login = () => {
           登录
         </Button>
         <div className="auth-bottom">
-          <div className="left">如果没有帐号请先 注册帐号</div>
-          <div className="right">无法登录？ 找回密码</div>
+          <div className="left">
+            如果没有帐号请先 <Link to="/register">注册帐号</Link>
+          </div>
+          <div className="right">
+            无法登录？ <Link to="">找回密码</Link>
+          </div>
         </div>
       </Form>
     </div>
