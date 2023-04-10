@@ -18,6 +18,7 @@ export const register = (req, res) => {
       return res.status(200).json("User has been created.");
     });
   });
+  res.json("values", values);
 };
 export const login = (req, res) => {};
 export const logout = (req, res) => {};
