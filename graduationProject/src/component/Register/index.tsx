@@ -1,5 +1,6 @@
 import { IconUserCircle, IconKey, IconMail } from "@douyinfe/semi-icons";
 import { Button, Form, Toast } from "@douyinfe/semi-ui";
+import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
@@ -12,9 +13,16 @@ interface InputType {
 const Register = () => {
   const [inputs, setInputs] = useState<InputType>();
   const navigateTo = useNavigate();
-  const onSucessRegisterChange = () => {
-    Toast.success("恭喜您，已成功注册！");
-    navigateTo("/login");
+  const onSucessRegisterChange = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/auth/register", inputs);
+      console.log("res", res);
+      Toast.success("恭喜您，已成功注册！");
+      navigateTo("/login");
+    } catch (err) {
+      console.log("error", err);
+    }
   };
   const hanleChange = (e: any) => {
     const value = e.values;
@@ -24,8 +32,6 @@ const Register = () => {
       password: value?.password,
     });
   };
-
-  
 
   return (
     <div className="auth">
