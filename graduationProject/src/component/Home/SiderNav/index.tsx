@@ -1,5 +1,6 @@
 import { Button } from "@douyinfe/semi-ui";
 import React from "react";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Nav } from "@douyinfe/semi-ui";
 import {
   IconSetting,
@@ -9,11 +10,43 @@ import {
 } from "@douyinfe/semi-icons";
 import "./index.scss";
 
+const navMap = new Map([
+  ["par", "人员核酸监测管理"],
+  ["addLocal", "新到本地人员管理"],
+  ["isolation", "疫情隔离人员信息管理"],
+  ["map", "辖区地图管理"],
+  ["active", "疫情动态管理"],
+  ["infect", "疑似感染人员统计"],
+  ["diagnosed", "确诊感染人员统计"],
+  ["userManagement", "用户管理"],
+]);
 const SiderNav = () => {
   return (
     <div>
       <Nav
-        style={{ height: "80vh" }}
+        style={{ height: "80vh", width: "30vh"}}
+        // renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
+        //   const routerMap = new Map([
+        //     ["人员核酸监测管理", "/"],
+        //     ["新到本地人员管理", "/addLocal"],
+        //     ["疫情隔离人员信息管理", "/isolation"],
+        //     ["辖区地图管理", "/map"],
+        //     ["疫情动态管理", "/active"],
+        //     ["疑似感染人员统计", "infect"],
+        //     ["确诊感染人员统计", "diagnosed"],
+        //     ["用户管理", "userManagement"],
+        //   ]);
+        //   console.log(props.itemKey, itemElement, routerMap.get(props.itemKey));
+
+        //   return (
+        //     <Link
+        //       style={{ textDecoration: "none" }}
+        //       to={routerMap.get(props.itemKey) || "/"}
+        //     >
+        //       {itemElement}
+        //     </Link>
+        //   );
+        // }}
         items={[
           {
             itemKey: "user",
@@ -40,7 +73,7 @@ const SiderNav = () => {
           {
             text: "用户管理",
             icon: <IconSetting />,
-            itemKey: "job",
+            itemKey: "用户管理",
           },
         ]}
         onSelect={(data) => console.log("trigger onSelect: ", data)}
