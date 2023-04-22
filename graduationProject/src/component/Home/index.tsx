@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Par from "./Par";
 import Isolation from "./Isolation";
 import AddLocal from "./AddLocal";
+import Foot from "../Footer";
 
 const Home = () => {
   const { Sider, Content } = Layout;
@@ -26,6 +27,7 @@ const Home = () => {
             <Route path="/diagnosed" element={<Isolation />} />
             <Route path="/userManagement" element={<Isolation />} />
           </Routes>
+          <Foot />
         </Content>
       </Layout>
     </Layout>

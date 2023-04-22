@@ -17,9 +17,8 @@ function PageLayout() {
         <Layout style={{ height: "80vh" }}>
           <Outlet />
         </Layout>
-        <Footer>
-          <Foot />
-        </Footer>
+        {/* <Footer> */}
+        {/* </Footer> */}
       </Layout>
     </div>
   );

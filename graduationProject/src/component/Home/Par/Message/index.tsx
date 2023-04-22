@@ -11,19 +11,22 @@ interface IMessageProps {
   addCount: number;
   total: number;
   imgProp: string;
+  color: string;
 }
 const Message = (props: IMessageProps) => {
-  const { title, addCount, total, imgProp } = props;
+  const { title, addCount, total, imgProp, color } = props;
   return (
     <div className="top-item">
-      <div className="top-item-left">
-        <div className="title">{title}</div>
-        <div className="add">新增{addCount}个</div>
-        <div className="total">总数{total}</div>
+      <div className="top-item-compare">
+        <div className="left">较上日</div>
+        <div className="right" style={{ color: `${color}` }}>
+          +{addCount}
+        </div>
       </div>
-      <div className="top-item-right">
-        <img src={"/src/icons/" + `${imgProp}.png`} />
+      <div className="top-item-total" style={{ color: `${color}` }}>
+        {total}
       </div>
+      <div className="top-item-title">{title}</div>
     </div>
   );
 };

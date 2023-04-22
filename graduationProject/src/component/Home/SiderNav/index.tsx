@@ -24,7 +24,7 @@ const SiderNav = () => {
   return (
     <div>
       <Nav
-        style={{ height: "80vh", width: "30vh"}}
+        style={{ height: "100vh", width: "30vh" }}
         // renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
         //   const routerMap = new Map([
         //     ["人员核酸监测管理", "/"],
