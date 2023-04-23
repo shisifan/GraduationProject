@@ -1,5 +1,5 @@
 import { Button } from "@douyinfe/semi-ui";
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Nav } from "@douyinfe/semi-ui";
 import {
@@ -7,6 +7,7 @@ import {
   IconHistogram,
   IconUser,
   IconStar,
+  IconHome,
 } from "@douyinfe/semi-icons";
 import "./index.scss";
 
@@ -21,33 +22,53 @@ const navMap = new Map([
   ["userManagement", "用户管理"],
 ]);
 const SiderNav = () => {
+  const [openKeys, setOpenKeys] = useState(["home"]);
+  const onOpenChange = (data: any) => {
+    setOpenKeys([...data.openKeys]);
+  };
   return (
-    <div>
+    <div className="nav-content">
       <Nav
+        defaultSelectedKeys={["home"]}
+        openKeys={openKeys}
+        className="nav"
         style={{ height: "100vh", width: "30vh" }}
-        // renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
-        //   const routerMap = new Map([
-        //     ["人员核酸监测管理", "/"],
-        //     ["新到本地人员管理", "/addLocal"],
-        //     ["疫情隔离人员信息管理", "/isolation"],
-        //     ["辖区地图管理", "/map"],
-        //     ["疫情动态管理", "/active"],
-        //     ["疑似感染人员统计", "infect"],
-        //     ["确诊感染人员统计", "diagnosed"],
-        //     ["用户管理", "userManagement"],
-        //   ]);
-        //   console.log(props.itemKey, itemElement, routerMap.get(props.itemKey));
-
-        //   return (
-        //     <Link
-        //       style={{ textDecoration: "none" }}
-        //       to={routerMap.get(props.itemKey) || "/"}
-        //     >
-        //       {itemElement}
-        //     </Link>
-        //   );
-        // }}
+        renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
+          const routerMap = new Map([
+            ["home", "/"],
+            ["user", "/"],
+            ["人员核酸监测管理", "/"],
+            ["新到本地人员管理", "/addLocal"],
+            ["疫情隔离人员信息管理", "/isolation"],
+            ["work", "/map"],
+            ["辖区地图管理", "/map"],
+            ["疫情动态管理", "/active"],
+            ["Count", "/infect"],
+            ["疑似感染人员统计", "/infect"],
+            ["确诊感染人员统计", "/diagnosed"],
+            ["manage", "/userManagement"],
+          ]);
+          console.log(
+            "data",
+            props.itemKey,
+            itemElement,
+            routerMap.get(props.itemKey as string)
+          );
+          return (
+            <Link
+              style={{ textDecoration: "none" }}
+              to={routerMap.get(props.itemKey as string) || "/"}
+            >
+              {itemElement}
+            </Link>
+          );
+        }}
         items={[
+          {
+            text: "首页",
+            icon: <IconHome />,
+            itemKey: "home",
+          },
           {
             itemKey: "user",
             text: "疫情人员管理",
@@ -73,9 +94,10 @@ const SiderNav = () => {
           {
             text: "用户管理",
             icon: <IconSetting />,
-            itemKey: "用户管理",
+            itemKey: "manage",
           },
         ]}
+        onOpenChange={onOpenChange}
         onSelect={(data) => console.log("trigger onSelect: ", data)}
         onClick={(data) => console.log("trigger onClick: ", data)}
       />

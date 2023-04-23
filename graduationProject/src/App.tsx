@@ -1,10 +1,16 @@
 import React from "react";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 import { Layout } from "@douyinfe/semi-ui";
 import Foot from "./component/Footer";
 import Head from "./component/Header";
 import Home from "./component/Home";
 import Example from "./component/Example";
+import AddLocal from "./component/Home/AddLocal";
 
 function PageLayout() {
   const { Header, Footer } = Layout;
@@ -17,8 +23,6 @@ function PageLayout() {
         <Layout style={{ height: "80vh" }}>
           <Outlet />
         </Layout>
-        {/* <Footer> */}
-        {/* </Footer> */}
       </Layout>
     </div>
   );

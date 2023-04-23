@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { IconHistogram } from "@douyinfe/semi-icons";
 import "./index.scss";
-import { statistics } from "./constants";
 
 interface IMessageProps {
   title: string;
