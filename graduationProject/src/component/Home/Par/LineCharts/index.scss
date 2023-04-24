@@ -1,0 +1,14 @@
+.line-charts-content{
+  margin: 0 25px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+
+  #history{
+    flex: 1;
+  }
+  #recure-dead{
+    flex: 1;
+  }
+}

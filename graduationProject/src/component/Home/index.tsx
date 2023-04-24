@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useMemo } from "react";
 import { Layout } from "@douyinfe/semi-ui";
 import Head from "../Header";
 import SiderNav from "./SiderNav";
@@ -9,10 +9,13 @@ import Isolation from "./Isolation";
 import AddLocal from "./AddLocal";
 import Foot from "../Footer";
 interface IHomeProps {
-  sort: string;
+  sort?: string;
 }
-const Home = () => {
-  const { Sider, Content, Footer } = Layout;
+const Home = (props: IHomeProps) => {
+  const { sort } = props;
+  console.log(11, window.location.pathname);
+
+  const { Sider, Header, Content, Footer } = Layout;
   return (
     <Layout className="components-layout-demo">
       <Layout>

@@ -12,6 +12,7 @@
   }
 
   .middle{
+    margin: 30px 0;
     display: flex;
     height: 550px;
     justify-content: space-between;
@@ -34,6 +35,8 @@
 
       .timeline{
         margin: 12px 20px;
+        overflow: scroll;
+        height: 450px;
       }
     }
 

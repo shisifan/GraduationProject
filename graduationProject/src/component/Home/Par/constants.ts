@@ -23,4 +23,10 @@ export const timeLineData: ITimeLineProps[] = [{
 }, {
   description: "香港医学专家: 疫情反弹属可控范围 防控仍需内外夹击",
   time: "2022年06月19日 17时52分"
+}, {
+  description: "西安社会面新增10例确诊病例",
+  time: "2022年06月19日 16时18分"
+}, {
+  description: "上海静安强化合围区疫情防控",
+  time: "2022年06月19日 15时07分"
 }]

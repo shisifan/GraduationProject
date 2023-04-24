@@ -7,6 +7,8 @@ import "./index.scss";
 import { Timeline } from "@douyinfe/semi-ui";
 import Message from "./Message";
 import { timeLineData } from "./constants";
+import LineCharts from "./LineCharts";
+import PieCharts from "./PieCharts";
 
 const Par = () => {
   const [spinning, setSpinning] = useState(true);
@@ -55,6 +57,8 @@ const Par = () => {
             color={"rgba(var(--semi-indigo-6), 1)"}
           />
         </div>
+        <LineCharts />
+        <PieCharts />
         <div className="middle">
           <div className="middle-message">
             <div className="middle-message-title">全国最新疫情新闻</div>
