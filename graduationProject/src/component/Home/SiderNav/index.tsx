@@ -18,6 +18,7 @@ const navMap = new Map([
   ["map", "辖区地图管理"],
   ["active", "疫情动态管理"],
   ["infect", "疑似感染人员统计"],
+  ["xian", "西安疫情防控"],
   ["diagnosed", "确诊感染人员统计"],
   ["userManagement", "用户管理"],
 ]);
@@ -30,6 +31,7 @@ const SiderNav = () => {
     <div className="nav-content">
       <Nav
         defaultSelectedKeys={["home"]}
+        defaultOpenKeys={["user", "work", "count"]}
         openKeys={openKeys}
         className="nav"
         style={{ height: "100vh", width: "30vh" }}
@@ -40,11 +42,12 @@ const SiderNav = () => {
             ["人员核酸监测管理", "/"],
             ["新到本地人员管理", "/addLocal"],
             ["疫情隔离人员信息管理", "/isolation"],
-            ["work", "/map"],
+            // ["work", "/map"],
             ["辖区地图管理", "/map"],
             ["疫情动态管理", "/active"],
-            ["Count", "/infect"],
+            // ["count", "/infect"],
             ["疑似感染人员统计", "/infect"],
+            ["西安疫情防控", "/xian"],
             ["确诊感染人员统计", "/diagnosed"],
             ["manage", "/userManagement"],
           ]);
@@ -86,10 +89,10 @@ const SiderNav = () => {
             items: ["辖区地图管理", "疫情动态管理", "疫情事件上报管理"],
           },
           {
-            itemKey: "Count",
-            text: "疫情防控统计",
+            itemKey: "count",
+            text: "本地疫情防控统计",
             icon: <IconHistogram />,
-            items: ["疑似感染人员统计", "确诊感染人员统计"],
+            items: ["西安疫情防控", "疑似感染人员统计", "确诊感染人员统计"],
           },
           {
             text: "用户管理",

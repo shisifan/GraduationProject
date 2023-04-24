@@ -8,6 +8,7 @@ import Par from "./Par";
 import Isolation from "./Isolation";
 import AddLocal from "./AddLocal";
 import Foot from "../Footer";
+import Xian from "./Xian";
 interface IHomeProps {
   sort?: string;
 }
@@ -26,6 +27,7 @@ const Home = (props: IHomeProps) => {
           <Routes>
             <Route path={"/"} element={<Par />} />
             <Route path={"/addLocal"} element={<AddLocal />} />
+            <Route path={"/xian"} element={<Xian />} />
             <Route path="/isolation" element={<Isolation />} />
             <Route path="/map" element={<Isolation />} />
             <Route path="/active" element={<Isolation />} />

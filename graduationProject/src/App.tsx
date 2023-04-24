@@ -11,6 +11,7 @@ import Head from "./component/Header";
 import Home from "./component/Home";
 import Example from "./component/Example";
 import AddLocal from "./component/Home/AddLocal";
+import Xian from "./component/Home/Xian";
 
 function PageLayout() {
   const { Header, Footer } = Layout;
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         children: [{ path: "/addLocal", element: <AddLocal /> }],
+      },
+      {
+        path: "/",
+        element: <Home />,
+        children: [{ path: "/xian", element: <Xian /> }],
       },
     ],
   },
