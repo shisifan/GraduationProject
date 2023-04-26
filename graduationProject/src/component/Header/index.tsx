@@ -26,7 +26,9 @@ const Head = () => {
   };
 
   const linkGit = () => {
-    window.open("www.baidu.com");
+    window.open(
+      "https://github.com/shisifan/GraduationProject/tree/main/graduationProject"
+    );
   };
 
   return (

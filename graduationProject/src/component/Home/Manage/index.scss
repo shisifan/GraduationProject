@@ -1,0 +1,145 @@
+.manage-content{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: var(--semi-color-nav-bg);
+  
+
+  .left{
+    width: 30%;
+    margin: 30px 15px 10px 30px;
+    border-radius: 8px;
+    box-shadow: var(--semi-shadow-elevated);
+    border: 1px solid var(--semi-color-border);
+
+    .person-message{
+
+      &-title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        width: 100%;
+        font-weight: 500;
+        font-size: 30px;
+        border-bottom: 3px solid var(--semi-color-border);
+        color: rgba(var(--semi-grey-9), 1);
+      }
+
+      &-avator{
+
+        .avator{
+          display: flex;
+          height: 350px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .svg{
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(var(--semi-grey-2), 1);
+          }
+
+          .name{
+            margin-top: 20px;
+            font-size: 22px;
+            color: rgba(var(--semi-grey-9), 1);
+          }
+        }
+
+        .message{
+
+          .tabphone{
+            display: flex;
+            padding: 0 30px;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: flex-start;
+
+            svg{
+              margin-right: 10px;
+            }
+
+            .title, .number{
+              margin-right: 60px;
+              font-size: 20px;
+              color: rgba(var(--semi-grey-6), 1);
+            }
+            
+          }
+
+          .approve{
+            display: flex;
+            padding: 0 30px;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: flex-start;
+
+            svg{
+              margin-right: 10px;
+            }
+
+            .title{
+              margin-right: 20px;
+              font-size: 20px;
+              color: rgba(var(--semi-grey-6), 1);
+            }
+            .already{
+              margin-right: 20px;
+              font-size: 18px;
+              color: rgba(var(--semi-grey-6), 1);
+            }
+          }
+
+          .mail{
+
+            display: flex;
+            padding: 0 30px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: flex-start;
+
+            svg{
+              margin-right: 10px;
+            }
+
+            .title{
+              margin-right: 60px;
+              font-size: 20px;
+              color: rgba(var(--semi-grey-6), 1);
+            }
+            .email-number{
+              margin-right: 20px;
+              font-size: 18px;
+              color: rgba(var(--semi-grey-6), 1);
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .right{
+    margin: 30px 15px 10px 15px;
+    width: 63%;
+    border-radius: 8px;
+    box-shadow: var(--semi-shadow-elevated);
+    border: 1px solid var(--semi-color-border);
+
+    .manager-title{
+      padding: 30px;
+      font-size: 30px;
+    }
+    .manager-list{
+      padding: 30px;
+
+    }
+  }
+}

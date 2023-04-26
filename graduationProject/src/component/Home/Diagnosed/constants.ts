@@ -1,0 +1,92 @@
+export const diagnosedTableData = [
+  {
+    name: "张三",
+    id: 610114200109082029,
+    sex: "女",
+    adress: "延安市宝塔区",
+    resource: "赛格",
+  },{
+    name: "赵四",
+    id: 610114200109082029,
+    sex: "男",
+    adress: "雁塔区",
+    resource: "大雁塔",
+  },{
+  name: "石思凡",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "西安邮电大学",
+  resource: "小寨",
+},{
+  name: "李瑶",
+  id: 61012400109482429,
+  sex: "男",
+  adress: "内蒙古蒙古包",
+  resource: "长安区",
+},{
+  name: "张三",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "延安市宝塔区",
+  resource: "赛格",
+},{
+  name: "赵四",
+  id: 610114200109082029,
+  sex: "男",
+  adress: "雁塔区",
+  resource: "大雁塔",
+},{
+  name: "王武",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "灞桥区",
+  resource: "钟楼",
+},{
+  name: "李瑶",
+  id: 61012400109482429,
+  sex: "男",
+  adress: "内蒙古蒙古包",
+  resource: "长安区",
+},{
+  name: "张三",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "延安市宝塔区",
+  resource: "赛格",
+},{
+  name: "赵四",
+  id: 610114200109082029,
+  sex: "男",
+  adress: "雁塔区",
+  resource: "大雁塔",
+},{
+  name: "王武",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "灞桥区",
+  resource: "钟楼",
+},{
+  name: "李瑶",
+  id: 61012400109482429,
+  sex: "男",
+  adress: "内蒙古蒙古包",
+  resource: "长安区",
+},{
+  name: "张三",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "延安市宝塔区",
+  resource: "赛格",
+},{
+  name: "赵四",
+  id: 610114200109082029,
+  sex: "男",
+  adress: "雁塔区",
+  resource: "大雁塔",
+},{
+  name: "王武",
+  id: 610114200109082029,
+  sex: "女",
+  adress: "灞桥区",
+  resource: "钟楼",
+}]

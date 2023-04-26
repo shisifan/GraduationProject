@@ -9,6 +9,11 @@ import Isolation from "./Isolation";
 import AddLocal from "./AddLocal";
 import Foot from "../Footer";
 import Xian from "./Xian";
+import Diagnosed from "./Diagnosed";
+import Infect from "./Infect";
+import Manage from "./Manage";
+import Die from "./Die";
+import Cure from "./Cure";
 interface IHomeProps {
   sort?: string;
 }
@@ -23,17 +28,19 @@ const Home = (props: IHomeProps) => {
         <Sider style={{ overflow: "hidden", width: "30vh" }}>
           <SiderNav />
         </Sider>
-        <Content style={{ overflow: "scroll", width: "70vh" }}>
+        <Content
+          style={{ overflow: "scroll", width: "70vh", paddingBottom: "135px" }}
+        >
           <Routes>
             <Route path={"/"} element={<Par />} />
             <Route path={"/addLocal"} element={<AddLocal />} />
             <Route path={"/xian"} element={<Xian />} />
             <Route path="/isolation" element={<Isolation />} />
-            <Route path="/map" element={<Isolation />} />
-            <Route path="/active" element={<Isolation />} />
-            <Route path="/infect" element={<Isolation />} />
-            <Route path="/diagnosed" element={<Isolation />} />
-            <Route path="/userManagement" element={<Isolation />} />
+            <Route path="/die" element={<Die />} />
+            <Route path="/cure" element={<Cure />} />
+            <Route path="/infect" element={<Infect />} />
+            <Route path="/diagnosed" element={<Diagnosed />} />
+            <Route path="/userManagement" element={<Manage />} />
           </Routes>
         </Content>
       </Layout>
