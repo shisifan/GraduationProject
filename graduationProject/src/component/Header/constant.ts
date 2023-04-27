@@ -1,1 +1,1 @@
-export const StystemTitle = '疫情防控管理系统';
+export const StystemTitle = '疫情信息服务系统';

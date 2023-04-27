@@ -24,6 +24,11 @@ const navMap = new Map([
 ]);
 const SiderNav = () => {
   const [openKeys, setOpenKeys] = useState(["home"]);
+  const [selectedKeys, setSelectedKeys] = useState(["首页"]);
+  const onSelect = (data: { selectedKeys: any }) => {
+    console.log("trigger onSelect: ", data);
+    setSelectedKeys([...data.selectedKeys]);
+  };
   const onOpenChange = (data: any) => {
     setOpenKeys([...data.openKeys]);
   };
@@ -31,8 +36,9 @@ const SiderNav = () => {
     <div className="nav-content">
       <Nav
         defaultSelectedKeys={["home"]}
-        defaultOpenKeys={["user", "work", "count"]}
+        defaultOpenKeys={["count"]}
         openKeys={openKeys}
+        selectedKeys={selectedKeys}
         className="nav"
         style={{ height: "100vh", width: "30vh" }}
         renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
@@ -48,12 +54,6 @@ const SiderNav = () => {
             ["治愈管理", "/cure"],
             ["manage", "/userManagement"],
           ]);
-          console.log(
-            "data",
-            props.itemKey,
-            itemElement,
-            routerMap.get(props.itemKey as string)
-          );
           return (
             <Link
               style={{ textDecoration: "none" }}
@@ -73,7 +73,13 @@ const SiderNav = () => {
             itemKey: "count",
             text: "本地疫情防控管理",
             icon: <IconHistogram />,
-            items: ["西安疫情防控", "密切接触人员管理", "确诊感染人员管理", "死亡管理", "治愈管理"],
+            items: [
+              "西安疫情防控",
+              "密切接触人员管理",
+              "确诊感染人员管理",
+              "死亡管理",
+              "治愈管理",
+            ],
           },
           // {
           //   itemKey: "user",
@@ -88,7 +94,8 @@ const SiderNav = () => {
           },
         ]}
         onOpenChange={onOpenChange}
-        onSelect={(data) => console.log("trigger onSelect: ", data)}
+        onSelect={onSelect}
+        // onSelect={(data) => console.log("trigger onSelect: ", data)}
         onClick={(data) => console.log("trigger onClick: ", data)}
       />
     </div>
