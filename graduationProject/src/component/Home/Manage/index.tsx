@@ -14,7 +14,6 @@ const Manage = () => {
     let newDataSource = [...dataSource];
     if (key != null) {
       let idx = newDataSource.findIndex((data) => data.key === key);
-
       if (idx > -1) {
         newDataSource.splice(idx, 1);
         setData(newDataSource);

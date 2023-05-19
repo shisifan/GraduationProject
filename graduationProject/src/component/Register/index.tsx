@@ -3,6 +3,7 @@ import { Button, Form, Toast } from "@douyinfe/semi-ui";
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { sendHttpRequest } from "../../api/request";
 import "./index.scss";
 
 interface InputType {
@@ -16,8 +17,11 @@ const Register = () => {
   const onSucessRegisterChange = async (e: any) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/register", inputs);
-      console.log("res", res);
+      sendHttpRequest(
+        "https://3j783p6226.zicp.fun/shisifan/user/register",
+        "post",
+        JSON.stringify(inputs)
+      );
       Toast.success("恭喜您，已成功注册！");
       navigateTo("/login");
     } catch (err) {

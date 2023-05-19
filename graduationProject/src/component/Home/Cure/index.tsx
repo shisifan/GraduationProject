@@ -1,6 +1,6 @@
 import { IconUserCircle, IconKey } from "@douyinfe/semi-icons";
 import { Button, Form, Table } from "@douyinfe/semi-ui";
-import React, { Component, useMemo } from "react";
+import React, { Component, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { diagnosedTableData } from "./constants";
 import "./index.scss";

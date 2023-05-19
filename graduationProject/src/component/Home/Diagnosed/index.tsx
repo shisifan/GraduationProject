@@ -1,11 +1,14 @@
 import { IconUserCircle, IconKey } from "@douyinfe/semi-icons";
 import { Button, Form, Table } from "@douyinfe/semi-ui";
-import React, { Component, useMemo } from "react";
+import React, { Component, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { sendHttpRequest } from "../../../api/request";
 import { diagnosedTableData } from "./constants";
 import "./index.scss";
 
 const Diagnosed = () => {
+  const [isCure, setIsCure] = useState(false);
+  const [isDie, setIsDie] = useState(false);
   const columns = [
     {
       title: "姓名",
@@ -74,6 +77,9 @@ const Diagnosed = () => {
     }),
     []
   );
+  useEffect(() => {
+    sendHttpRequest("https://3j783p6226.zicp.fun/shisifan/user/login", "post");
+  }, [isCure, isDie]);
   return (
     <div className="infect-content">
       <div className="infect-content-theme">确诊人员管理</div>
