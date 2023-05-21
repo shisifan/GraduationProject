@@ -1,33 +1,76 @@
 import { IconUserCircle, IconKey } from "@douyinfe/semi-icons";
 import { Button, Form, Table } from "@douyinfe/semi-ui";
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconDelete } from "@douyinfe/semi-icons";
 import { useState } from "react";
 import "./index.scss";
 import { raw } from "./constants";
+import axios from "axios";
 
 const Manage = () => {
   const [dataSource, setData] = useState(raw);
+  const [deleteData, setDeleteData] = useState<number>(0);
 
-  const removeRecord = (key: null) => {
+  const removeRecord = (key: React.SetStateAction<number>) => {
     let newDataSource = [...dataSource];
+    setDeleteData(key);
     if (key != null) {
-      let idx = newDataSource.findIndex((data) => data.key === key);
+      let idx = newDataSource.findIndex((data) => data.userId === key);
       if (idx > -1) {
         newDataSource.splice(idx, 1);
+        deleteManager();
         setData(newDataSource);
       }
     }
   };
+  const deleteManager = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      await axios.post(
+        "https://3j783p6226.zicp.fun/shisifan/user/delete",
+        {
+          userId: deleteData,
+        },
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getListData = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const res = await axios.get(
+        "https://3j783p6226.zicp.fun/shisifan/user/list" +
+          "?page=1&pageLimit=10",
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+      setData(res?.data?.data?.users);
+      console.log("data", res?.data?.data, res?.data?.data?.users);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getListData();
+  }, []);
   const columns = [
     {
       title: "用户名",
-      dataIndex: "name",
+      dataIndex: "username",
     },
     {
-      title: "手机号",
-      dataIndex: "tabphone",
+      title: "用户id",
+      dataIndex: "userId",
     },
     {
       title: "邮箱",
@@ -46,7 +89,7 @@ const Manage = () => {
         <Button
           icon={<IconDelete />}
           theme="borderless"
-          onClick={() => removeRecord(record.key)}
+          onClick={() => removeRecord(record.userId)}
         />
       ),
     },

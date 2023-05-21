@@ -1,13 +1,39 @@
-import { IconUserCircle, IconKey } from "@douyinfe/semi-icons";
-import { Button, Form, Modal, Table } from "@douyinfe/semi-ui";
+import {
+  IconUserCircle,
+  IconKey,
+  IconPlusCircle,
+  IconMinusCircle,
+} from "@douyinfe/semi-icons";
+import { IconAlertTriangle } from "@douyinfe/semi-icons";
+import {
+  ArrayField,
+  Button,
+  Form,
+  Input,
+  Modal,
+  Popconfirm,
+  Table,
+  Toast,
+} from "@douyinfe/semi-ui";
 import React, { Component, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import AddModal from "../AddModal";
+import DetailMessage from "../DetailMessage";
 import { historydata, infectTableData } from "./constants";
 import "./index.scss";
 
 const Infect = () => {
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState()
+  const [addVisible, setAddVisible] = useState(false);
+  const showDialog = () => {
+    setAddVisible(true);
+  };
+  const addHandleOk = () => {
+    setAddVisible(false);
+  };
+  const addHandleCancel = () => {
+    setAddVisible(false);
+  };
   const handleOk = () => {
     setVisible(false);
   };
@@ -19,6 +45,14 @@ const Infect = () => {
   };
   const handleAfterClose = () => {
     console.log("After Close callback executed");
+  };
+
+  const onConfirm = () => {
+    Toast.success("确认保存！");
+  };
+
+  const onCancel = () => {
+    Toast.warning("取消保存！");
   };
   const handleChangeYinStatu = (e: number) => {
     infectTableData.filter((item, index) => {
@@ -109,37 +143,47 @@ const Infect = () => {
               afterClose={handleAfterClose} //>=1.16.0
               bodyStyle={{ overflow: "auto", height: "400px" }}
             >
-              <div className="detail-content">
-                <div className="basis">
-                  <div className="title">基本信息</div>
-                  <Table
-                    pagination={false}
-                    columns={column}
-                    dataSource={[].concat(record)}
-                  ></Table>
-                </div>
-                <div className="history">
-                  <div className="title">核酸检测历史</div>
-                  <Table
-                    pagination={false}
-                    columns={historyColumns}
-                    dataSource={historydata}
-                    scroll={{ y: 150 }}
-                  ></Table>
-                </div>
-              </div>
+              <DetailMessage data={[].concat(record)} />
             </Modal>
-            <Button
-              theme="solid"
-              type="warning"
-              style={{ marginRight: 8 }}
-              onClick={() => handleChangeYinStatu(record?.key)}
+            <Popconfirm
+              okType="warning"
+              icon={
+                <IconAlertTriangle
+                  style={{ color: "var(--semi-color-warning)" }}
+                  size="extra-large"
+                />
+              }
+              title="确定是否要转为阴性？"
+              content="此修改将不可逆"
+              onConfirm={onConfirm}
+              onCancel={onCancel}
             >
-              转为阴性
-            </Button>
-            <Button theme="solid" type="danger" style={{ marginRight: 8 }}>
-              转为确诊
-            </Button>
+              <Button
+                theme="solid"
+                type="warning"
+                style={{ marginRight: 8 }}
+                onClick={() => handleChangeYinStatu(record?.key)}
+              >
+                转为阴性
+              </Button>
+            </Popconfirm>
+            <Popconfirm
+              okType="danger"
+              icon={
+                <IconAlertTriangle
+                  style={{ color: "var(--semi-color-danger)" }}
+                  size="extra-large"
+                />
+              }
+              title="确定是否要转为确诊？"
+              content="此修改将不可逆"
+              onConfirm={onConfirm}
+              onCancel={onCancel}
+            >
+              <Button theme="solid" type="danger" style={{ marginRight: 8 }}>
+                转为确诊
+              </Button>
+            </Popconfirm>
           </div>
         );
       },
@@ -151,9 +195,28 @@ const Infect = () => {
     }),
     []
   );
+
   return (
     <div className="infect-content">
-      <div className="infect-content-theme">密切接触人员管理</div>
+      <div className="infect-content-top">
+        <div className="infect-content-top-theme">密切接触人员管理</div>
+        <div className="infect-content-top-addButton">
+          <Button theme="solid" onClick={showDialog}>
+            添加密切接触人员
+          </Button>
+          <Modal
+            centered
+            width={500}
+            visible={addVisible}
+            onOk={addHandleOk}
+            onCancel={addHandleCancel}
+            closeOnEsc={true}
+          >
+            <AddModal title="添加密切接触人员" status={1} />
+          </Modal>
+        </div>
+      </div>
+
       <div className="infect-content-table">
         <Table
           className="table"

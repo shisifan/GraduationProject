@@ -1,0 +1,15 @@
+.addModal-content{
+  &-title{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-form{
+    height: 400px;
+    overflow-y: scroll;
+  }
+}

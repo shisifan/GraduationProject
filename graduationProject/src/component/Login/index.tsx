@@ -12,39 +12,20 @@ interface Login {
 const Login = () => {
   const [data, setData] = useState<Login>(null);
   const navigateTo = useNavigate();
-  const [response, setResponse] = useState<number>();
   const handleValueChange = (data: Login) => {
     setData(data);
   };
-  const sendHttpRequest = (url: string, method: string, body: string) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-    xhr.setRequestHeader("Authorization", "Bearer <token>");
-    xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
-    xhr.send(body);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          setResponse(JSON.parse(xhr.responseText)?.data);
-          console.log("请求数据成功：", JSON.parse(xhr.responseText));
-          return JSON.parse(xhr.responseText);
-        } else {
-          setResponse(JSON.parse(xhr.responseText)?.data);
-          console.log("请求数据失败：", xhr.statusText);
-          return JSON.parse(xhr.responseText);
-        }
-      }
-    };
-  };
-  const handleClickLogin = () => {
-    sendHttpRequest(
+  const handleClickLogin = async () => {
+    const res = await axios.post(
       "https://3j783p6226.zicp.fun/shisifan/user/login",
-      "post",
-      JSON.stringify(data)
+      data
     );
-    if (response === 1) {
-      Toast.success("恭喜您，已成功登录！");
+    console.log(res);
+    window.localStorage.setItem("token", res?.headers?.token);
+    if (res?.data?.data === 1) {
+      console.log("请求数据成功1111");
       navigateTo("/");
+      Toast.success("恭喜您，已成功登录！");
     }
   };
   return (

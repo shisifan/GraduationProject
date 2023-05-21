@@ -1,0 +1,30 @@
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .basis{
+    padding: 10px;
+    box-shadow: var(--semi-shadow-elevated);
+    border: 1px solid var(--semi-color-border);
+
+    .title{
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+  }
+
+  .history{
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: var(--semi-shadow-elevated);
+    border: 1px solid var(--semi-color-border);
+
+    .title{
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+  }
+}
