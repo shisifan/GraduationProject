@@ -14,12 +14,12 @@ import Infect from "./Infect";
 import Manage from "./Manage";
 import Die from "./Die";
 import Cure from "./Cure";
+import Test from "./Test";
 interface IHomeProps {
   sort?: string;
 }
 const Home = (props: IHomeProps) => {
   const { sort } = props;
-  console.log(11, window.location.pathname);
 
   const { Sider, Header, Content, Footer } = Layout;
   return (
@@ -32,6 +32,7 @@ const Home = (props: IHomeProps) => {
           style={{ overflow: "scroll", width: "70vh", paddingBottom: "135px" }}
         >
           <Routes>
+            {/* <Route path={"/"} element={<Test />} /> */}
             <Route path={"/"} element={<Par />} />
             <Route path={"/addLocal"} element={<AddLocal />} />
             <Route path={"/xian"} element={<Xian />} />

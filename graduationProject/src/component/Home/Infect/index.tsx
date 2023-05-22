@@ -15,7 +15,8 @@ import {
   Table,
   Toast,
 } from "@douyinfe/semi-ui";
-import React, { Component, useMemo, useState } from "react";
+import axios from "axios";
+import React, { Component, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import AddModal from "../AddModal";
 import DetailMessage from "../DetailMessage";
@@ -23,6 +24,7 @@ import { historydata, infectTableData } from "./constants";
 import "./index.scss";
 
 const Infect = () => {
+  const [listData, setListData] = useState([]);
   const [visible, setVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
   const showDialog = () => {
@@ -46,8 +48,29 @@ const Infect = () => {
   const handleAfterClose = () => {
     console.log("After Close callback executed");
   };
+  const changeStatus = async (record: any, status: number) => {
+    const token = window.localStorage.getItem("token");
+    const res = await axios.post(
+      "https://3j783p6226.zicp.fun/shisifan/e_user/update",
+      {
+        userId: record?.userId,
+        status: status,
+      },
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
+    if (res?.data?.data) {
+      Toast.success(res?.data?.msg);
+    } else {
+      Toast.warning(res?.data?.msg);
+    }
+  };
 
-  const onConfirm = () => {
+  const onConfirm = (record: any, status: number) => {
+    changeStatus(record, status);
     Toast.success("确认保存！");
   };
 
@@ -76,17 +99,17 @@ const Infect = () => {
   const columns = [
     {
       title: "姓名",
-      dataIndex: "name",
+      dataIndex: "username",
       render: (text: string) => <div style={{ fontSize: "18px" }}>{text}</div>,
     },
     {
       title: "身份证号",
-      dataIndex: "id",
+      dataIndex: "idCard",
       render: (id: number) => <div style={{ fontSize: "18px" }}>{id}</div>,
     },
     {
       title: "性别",
-      dataIndex: "sex",
+      dataIndex: "gender",
       filters: [
         {
           text: "男",
@@ -98,30 +121,29 @@ const Infect = () => {
         },
       ],
       render: (sex: string) => <div style={{ fontSize: "18px" }}>{sex}</div>,
-      onFilter: (value: any, record: { sex: string | any[] }) =>
-        record.sex.includes(value),
+      onFilter: (value: any, record: { gender: string | any[] }) =>
+        record.gender.includes(value),
     },
     {
       title: "家庭地址",
-      dataIndex: "adress",
+      dataIndex: "address",
       render: (adress: string) => (
         <div style={{ fontSize: "18px" }}>{adress}</div>
       ),
     },
     {
       title: "疑似感染来源",
-      dataIndex: "resource",
+      dataIndex: "epidemicFrom",
       render: (resource: string) => (
         <div style={{ fontSize: "18px" }}>{resource}</div>
       ),
     },
     {
       title: "操作",
-      dataIndex: "operate",
+      dataIndex: "userId",
       render: (text: any, record: any) => {
         const column = JSON.parse(JSON.stringify(columns));
         column.pop();
-        console.log(123, record, column, [].concat(record));
         return (
           <div className="button-content">
             <Button
@@ -143,7 +165,7 @@ const Infect = () => {
               afterClose={handleAfterClose} //>=1.16.0
               bodyStyle={{ overflow: "auto", height: "400px" }}
             >
-              <DetailMessage data={[].concat(record)} />
+              <DetailMessage data={text} />
             </Modal>
             <Popconfirm
               okType="warning"
@@ -155,7 +177,7 @@ const Infect = () => {
               }
               title="确定是否要转为阴性？"
               content="此修改将不可逆"
-              onConfirm={onConfirm}
+              onConfirm={() => onConfirm(record, 5)}
               onCancel={onCancel}
             >
               <Button
@@ -177,7 +199,7 @@ const Infect = () => {
               }
               title="确定是否要转为确诊？"
               content="此修改将不可逆"
-              onConfirm={onConfirm}
+              onConfirm={() => onConfirm(record, 2)}
               onCancel={onCancel}
             >
               <Button theme="solid" type="danger" style={{ marginRight: 8 }}>
@@ -195,6 +217,32 @@ const Infect = () => {
     }),
     []
   );
+  const getList = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const res = await axios.get(
+        "https://3j783p6226.zicp.fun/shisifan/e_user/list?page=1&pageLimit=10&status=1",
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+      setListData(
+        res?.data?.data?.users?.map((item: any, index: number) => {
+          return {
+            ...item,
+            key: index + 1,
+          };
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getList();
+  }, [addVisible]);
 
   return (
     <div className="infect-content">
@@ -204,16 +252,12 @@ const Infect = () => {
           <Button theme="solid" onClick={showDialog}>
             添加密切接触人员
           </Button>
-          <Modal
-            centered
-            width={500}
-            visible={addVisible}
-            onOk={addHandleOk}
-            onCancel={addHandleCancel}
-            closeOnEsc={true}
-          >
-            <AddModal title="添加密切接触人员" status={1} />
-          </Modal>
+          <AddModal
+            setAddVisible={setAddVisible}
+            addVisible={addVisible}
+            title="添加密切接触人员"
+            status={1}
+          />
         </div>
       </div>
 
@@ -221,7 +265,7 @@ const Infect = () => {
         <Table
           className="table"
           columns={columns}
-          dataSource={infectTableData}
+          dataSource={listData}
           pagination={pagination}
         />
       </div>

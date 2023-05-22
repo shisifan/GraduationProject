@@ -47,7 +47,14 @@ const Xian = () => {
 
   useEffect(() => {
     const data = getData();
-    setData(data);
+    setData(
+      data?.map((item: any, index: number) => {
+        return {
+          ...item,
+          key: index + 1,
+        };
+      })
+    );
   }, []);
   useEffect(() => {
     let xianRecureChart = echarts.init(document.getElementById("recure-dead")!);

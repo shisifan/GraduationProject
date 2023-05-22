@@ -20,7 +20,6 @@ const Login = () => {
       "https://3j783p6226.zicp.fun/shisifan/user/login",
       data
     );
-    console.log(res);
     window.localStorage.setItem("token", res?.headers?.token);
     if (res?.data?.data === 1) {
       console.log("请求数据成功1111");

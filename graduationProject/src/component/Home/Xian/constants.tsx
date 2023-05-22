@@ -211,13 +211,6 @@ export const columns = [
       return { text: item, value: item };
     }),
     onFilter: (value: any, record: { area: string | any[] }) => {
-      console.log(
-        11111,
-        record,
-        record.area,
-        value,
-        record.area.includes(value)
-      );
       return record.area.includes(value);
     },
     render: (text: any) => `${text}`,

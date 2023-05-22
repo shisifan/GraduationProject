@@ -55,7 +55,6 @@ const Manage = () => {
         }
       );
       setData(res?.data?.data?.users);
-      console.log("data", res?.data?.data, res?.data?.data?.users);
     } catch (err) {
       console.log(err);
     }
