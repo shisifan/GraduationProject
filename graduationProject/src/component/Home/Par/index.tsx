@@ -12,6 +12,26 @@ import PieCharts from "./PieCharts";
 
 const Par = () => {
   const [spinning, setSpinning] = useState(true);
+  const dieCount = Number(
+    window.localStorage.getItem("die") !== "undefined"
+      ? window.localStorage.getItem("die")
+      : 0
+  );
+  const cureCount = Number(
+    window.localStorage.getItem("cure") !== "undefined"
+      ? window.localStorage.getItem("cure")
+      : 0
+  );
+  const diagnosedCount = Number(
+    window.localStorage.getItem("diagnosed") !== "undefined"
+      ? window.localStorage.getItem("diagnosed")
+      : 0
+  );
+  const infectCount = Number(
+    window.localStorage.getItem("infect") !== "undefined"
+      ? window.localStorage.getItem("infect")
+      : 0
+  );
   useEffect(() => {
     setTimeout(() => {
       setSpinning(false);
@@ -23,36 +43,36 @@ const Par = () => {
         <div className="top">
           <Message
             title="现有确诊"
-            addCount={10}
-            total={19061}
+            addCount={10 + diagnosedCount}
+            total={19061 + diagnosedCount}
             imgProp={"statistics"}
             color={"rgba(var(--semi-red-7), 1)"}
           />
           <Message
             title="累计确诊"
-            addCount={3488574}
-            total={3488574}
+            addCount={348857 + diagnosedCount}
+            total={3488574 + diagnosedCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-red-9), 1)"}
           />
           <Message
             title="累计隔离人数"
-            addCount={3488444}
-            total={3488444}
+            addCount={348841 + infectCount}
+            total={3488444 + infectCount}
             imgProp={"justice"}
             color={"rgba(var(--semi-violet-5), 1)"}
           />
           <Message
             title="累计死亡"
-            addCount={1488444}
-            total={1488444}
+            addCount={48840 + dieCount}
+            total={1488444 + dieCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-grey-9), 1)"}
           />
           <Message
             title="累计治愈人数"
-            addCount={1588444}
-            total={2184440}
+            addCount={1588444 + cureCount}
+            total={2184440 + cureCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-indigo-6), 1)"}
           />

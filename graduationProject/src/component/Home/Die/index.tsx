@@ -117,6 +117,7 @@ const Die = () => {
           };
         })
       );
+      window.localStorage.setItem("die", res?.data?.data?.sum);
     } catch (err) {
       console.log(err);
     }

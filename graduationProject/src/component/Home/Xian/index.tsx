@@ -44,6 +44,26 @@ const Xian = () => {
     }
     return data;
   };
+  const dieCount = Number(
+    window.localStorage.getItem("die") !== "undefined"
+      ? window.localStorage.getItem("die")
+      : 0
+  );
+  const cureCount = Number(
+    window.localStorage.getItem("cure") !== "undefined"
+      ? window.localStorage.getItem("cure")
+      : 0
+  );
+  const diagnosedCount = Number(
+    window.localStorage.getItem("diagnosed") !== "undefined"
+      ? window.localStorage.getItem("diagnosed")
+      : 0
+  );
+  const infectCount = Number(
+    window.localStorage.getItem("infect") !== "undefined"
+      ? window.localStorage.getItem("infect")
+      : 0
+  );
 
   useEffect(() => {
     const data = getData();
@@ -78,36 +98,36 @@ const Xian = () => {
         <div className="xian-content-top-middle">
           <Message
             title="现有确诊人数"
-            addCount={10}
-            total={1901}
+            addCount={10 + diagnosedCount}
+            total={1901 + diagnosedCount}
             imgProp={"statistics"}
             color={"rgba(var(--semi-red-7), 1)"}
           />
           <Message
             title="累计确诊人数"
-            addCount={20}
-            total={3484}
+            addCount={20 + diagnosedCount}
+            total={3484 + diagnosedCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-red-9), 1)"}
           />
           <Message
             title="累计隔离人数"
-            addCount={200}
-            total={34244}
+            addCount={200 + infectCount}
+            total={34244 + infectCount}
             imgProp={"justice"}
             color={"rgba(var(--semi-violet-5), 1)"}
           />
           <Message
             title="累计死亡人数"
-            addCount={14}
-            total={1844}
+            addCount={14 + dieCount}
+            total={1844 + dieCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-grey-9), 1)"}
           />
           <Message
             title="累计治愈人数"
-            addCount={140}
-            total={18404}
+            addCount={140 + cureCount}
+            total={18404 + cureCount}
             imgProp={"suspected"}
             color={"rgba(var(--semi-green-4), 1)"}
           />

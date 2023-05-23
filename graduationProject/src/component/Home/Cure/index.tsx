@@ -109,6 +109,7 @@ const Cure = () => {
           },
         }
       );
+      window.localStorage.setItem("cure", res?.data?.data?.sum);
       setListData(
         res?.data?.data?.users?.map((item: any, index: number) => {
           return {

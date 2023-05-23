@@ -1,3 +1,23 @@
+const dieCount = Number(
+  window.localStorage.getItem("die") !== "undefined"
+    ? window.localStorage.getItem("die")
+    : 0
+);
+const cureCount = Number(
+  window.localStorage.getItem("cure") !== "undefined"
+    ? window.localStorage.getItem("cure")
+    : 0
+);
+const diagnosedCount = Number(
+  window.localStorage.getItem("diagnosed") !== "undefined"
+    ? window.localStorage.getItem("diagnosed")
+    : 0
+);
+const infectCount = Number(
+  window.localStorage.getItem("infect") !== "undefined"
+    ? window.localStorage.getItem("infect")
+    : 0
+);
 export const legencyOption = {
   title: {
     text: "西安累计确诊和疑似趋势图",
@@ -22,13 +42,13 @@ export const legencyOption = {
   series: [
     {
       name: "确诊",
-      data: [1000, 220, 282, 222, 422],
+      data: [1000, 220, 282, 222, 422 + diagnosedCount],
       type: "line",
       stack: "x",
     },
     {
       name: "疑似",
-      data: [235, 445, 334, 532, 323],
+      data: [235, 445, 334, 532, 323 + infectCount],
       type: "line",
       stack: "x",
     },
@@ -116,13 +136,13 @@ export const legencyNowOption = {
   series: [
     {
       name: "确诊",
-      data: [10, 19, 12, 22, 10],
+      data: [10, 19, 12, 22, 10 + diagnosedCount],
       type: "line",
       stack: "x",
     },
     {
       name: "疑似",
-      data: [22, 40, 34, 32, 23],
+      data: [22, 40, 34, 32, 23 + infectCount],
       type: "line",
       stack: "x",
     },

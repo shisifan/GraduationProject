@@ -228,6 +228,7 @@ const Infect = () => {
           },
         }
       );
+      window.localStorage.setItem("infect", res?.data?.data?.sum);
       setListData(
         res?.data?.data?.users?.map((item: any, index: number) => {
           return {
