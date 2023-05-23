@@ -208,6 +208,7 @@ const Diagnosed = () => {
       console.log(err);
     }
   };
+  console.log("ListData", listData);
 
   useEffect(() => {
     getList();

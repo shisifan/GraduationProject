@@ -1,5 +1,5 @@
-import { Button } from "@douyinfe/semi-ui";
-import React from "react";
+import { Button, Popconfirm, Toast } from "@douyinfe/semi-ui";
+import React, { useEffect, useState } from "react";
 import { Tooltip } from "@douyinfe/semi-ui";
 import { IconMoon, IconGithubLogo } from "@douyinfe/semi-icons";
 import { StystemTitle } from "./constant";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Head = () => {
   const navigateTo = useNavigate();
+  const [isLogin, setIsLogin] = useState(false);
   const switchMode = () => {
     const body = document.body;
     if (body.hasAttribute("theme-mode")) {
@@ -29,6 +30,23 @@ const Head = () => {
       "https://github.com/shisifan/GraduationProject/tree/main/graduationProject"
     );
   };
+  const onConfirm = () => {
+    setIsLogin(false);
+    window.localStorage.setItem("token", "undefined");
+    Toast.success("确认退出！");
+  };
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token") != "undefined") {
+      console.log("isLogin1", isLogin);
+      setIsLogin(true);
+    } else {
+      console.log("isLogin1", isLogin);
+      setIsLogin(false);
+    }
+  }, []);
+
+  console.log("isLogin", isLogin);
 
   return (
     <div className="header-content">
@@ -56,15 +74,32 @@ const Head = () => {
             style={{ color: "rgba(var(--semi-grey-5), 1)" }}
           />
         </Tooltip>
-        <Button
-          className="tooltip"
-          theme="solid"
-          type="primary"
-          onClick={onLoginChange}
-          style={{ marginRight: 8 }}
-        >
-          登录
-        </Button>
+        {isLogin ? (
+          <Popconfirm
+            title="确定是否要退出登录？"
+            content="此修改将不可逆"
+            onConfirm={onConfirm}
+          >
+            <Button
+              className="tooltip"
+              theme="solid"
+              type="primary"
+              style={{ marginRight: 8 }}
+            >
+              已登录
+            </Button>
+          </Popconfirm>
+        ) : (
+          <Button
+            className="tooltip"
+            theme="solid"
+            type="primary"
+            onClick={onLoginChange}
+            style={{ marginRight: 8 }}
+          >
+            登录
+          </Button>
+        )}
       </div>
     </div>
   );
